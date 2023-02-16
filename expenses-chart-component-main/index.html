@@ -28,7 +28,7 @@
     }
 
     body h2 {
-      font-size: 1.2em;
+      font-size: 1em;
       padding: 0px;
       margin: 0px;
     }
@@ -121,7 +121,17 @@
     }
 
     #labels {
-      background: purple;
+      color: var(--mdBrown);
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      border-bottom: 1px solid var(--mdBrown);
+    }
+
+    #labels > div {
+      width: 4em;
+      text-align: center;
+      padding: 5px 0 5px 0;
     }
   </style>
 
@@ -151,13 +161,13 @@
         <div id="sun" class = "reg"></div>
       </div>
       <div id="labels">
-        <div id="mon"></div>
-        <div id="tue"></div>
-        <div id="wed"></div>
-        <div id="thu"></div>
-        <div id="fri"></div>
-        <div id="sat"></div>
-        <div id="sun"></div>
+        <div id="mon">Mon</div>
+        <div id="tue">Tue</div>
+        <div id="wed">Wed</div>
+        <div id="thu">Thu</div>
+        <div id="fri">Fri</div>
+        <div id="sat">Sat</div>
+        <div id="sun">Sun</div>
       </div>
 
     </div>
@@ -222,7 +232,7 @@
           document.getElementById('barGraph').children[i].style.height = (financeData[i].amount/maxNum)*100 + '%';
           
           if (financeData[i].amount == maxNum) {
-            document.getElementById('barGraph').children[i].style.backgroundColor = 'var(--mdBrown)';
+            document.getElementById('barGraph').children[i].style.backgroundColor = 'var(--cyan)';
           }
         }
 
