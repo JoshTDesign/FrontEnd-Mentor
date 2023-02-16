@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Expenses chart component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+
+    :root {
+      --softRed: hsl(10, 79%, 65%);
+      --cyan: hsl(186, 34%, 60%);
+      --dkBrown: hsl(25, 47%, 15%);
+      --mdBrown: hsl(28, 10%, 53%);
+      --cream: hsl(27, 66%, 92%);
+      --paleOrange: hsl(27, 66%, 92%);
+    }
+
+    body {
+      font-size: .8em;
+      font-family: 'DM Sans', sans-serif;
+      padding: 20px;
+      background: var(--cream);
+    }
+
+    body h2 {
+      font-size: 1.2em;
+      padding: 0px;
+      margin: 0px;
+    }
+
+    body h1 {
+      font-size: 2em;
+      padding: 0px;
+      margin: 0px;
+    }
+
+
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+
+    header { 
+      position: relative;
+      background:var(--softRed);
+      border-radius:10px;
+      padding: 25px;
+      margin: 5px;
+      color: var(--cream);
+    }
+
+    header::after {
+      content:" ";
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background: var(--dkBrown);
+      border-radius: 50%;
+      top: calc(50% - 25px);
+      right: 25px;
+    }
+
+    header::before {
+      content:" ";
+      position: absolute;
+      width: 45px;
+      height: 45px;
+      border: 3px solid white;
+      border-radius: 50%;
+      top: calc(50% - 25px);
+      right: 50px;
+      z-index:2;
+    }
+
+    header {
+      color: white;
+      margin-bottom: 30px;
+    }
+
+    #spending {
+      background: white;
+      border-radius: 10px;
+      padding: 25px; 
+      margin: 5px;
+    }
+
+    #spending h1 {
+      color: var(--dkBrown);
+    }
+
+    #graph {
+      height: 250px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      align-content: stretch;
+    }
+
+    #barGraph {
+      flex-grow:1;
+      display:flex;
+      flex-wrap:nowrap;
+      justify-content: space-around;
+      margin: 25px 0 0 0;
+      align-items: flex-end;
+
+    }
+
+    #barGraph > div {
+      background: var(--softRed);
+      content: " ";
+      flex-direction: row;
+      width: 10%;
+      border-radius: 5px;
+      height: 5%;
+      transition: height 1s;
+    }
+
+    #labels {
+      background: purple;
+    }
+  </style>
+
+<!--font links-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <header>
+    <h2>My balance</h2>
+    <h1 id="balance">$921.48</h1>
+  </header>
+
+  <section id="spending">
+    <h1>Spending - Last 7 days</h1>
+    <div id="graph">
+      <div id="barGraph">
+        <div id="mon" class = "reg"></div>
+        <div id="tue" class = "reg"></div>
+        <div id="wed" class = "reg"></div>
+        <div id="thu" class = "reg"></div>
+        <div id="fri" class = "reg"></div>
+        <div id="sat" class = "reg"></div>
+        <div id="sun" class = "reg"></div>
+      </div>
+      <div id="labels">
+        <div id="mon"></div>
+        <div id="tue"></div>
+        <div id="wed"></div>
+        <div id="thu"></div>
+        <div id="fri"></div>
+        <div id="sat"></div>
+        <div id="sun"></div>
+      </div>
+
+    </div>
+  </section>
+
+  mon
+  tue
+  wed
+  thu
+  fri
+  sat
+  sun
+
+  Total this month
+  $478.33
+
+  +2.4%
+  from last month
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Josh Taylor</a>.
+  </div>
+
+  <script>
+
+    //SET VARIABLES
+    var randNum = 0;
+    var financeData;
+    var maxNum;
+    var maxDay;
+    var dailyTotalArray = [];
+    var financeDataObj = {};
+    var barGraphElement = document.getElementById('barGraph');
+      
+    //FUNCTION TO FIND MAX NUMBER IN DATA
+    const findMax = (array) => {
+        for (var i=0; i < array.length ; ++i) {
+          dailyTotalArray.push(array[i].amount);
+        }
+        return Math.max.apply(null, dailyTotalArray);
+        // maxNum = Math.max.apply(null, dailyTotalArray);
+      }
+
+    //FUNCTION TO FIND KEY of MAX NUMBER in data
+    const getMax = () => {
+        for (var i=0; i < barGraphElement.children.length; i++) {
+          // console.log(barGraphElement.children[i].style.height.value);
+          console.log(barGraphElement.children[i].style.height.value);
+          // if (barGraphElement.children[i] == )
+        }
+    };
+
+    //FUNCTION to assign FINANCEDATA to BAR GRAPHS
+    const assignData = () => {
+        findMax(financeData);
+        getMax();
+        //Iterates through DOM to assign heights  to each bar
+        for (var i=0; i < financeData.length ; ++i) {
+          dailyTotalArray.push(financeData[i].amount);
+          maxNum = Math.max.apply(null, dailyTotalArray);
+          document.getElementById('barGraph').children[i].style.height = (financeData[i].amount/maxNum)*100 + '%';
+          
+          if (financeData[i].amount == maxNum) {
+            document.getElementById('barGraph').children[i].style.backgroundColor = 'var(--mdBrown)';
+          }
+        }
+
+      }
+
+    //FUNCTION to use fetch to RETRIEVE DATA from JSON
+      async function loadData() {
+        const response = await fetch('data.json');
+        financeData = await response.json();
+        console.log(financeData); //received data from file
+        // findMax();
+        assignData();
+      }
+
+
+      loadData();
+
+
+  </script>
+</body>
+</html>
