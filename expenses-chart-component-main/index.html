@@ -92,7 +92,7 @@
     }
 
     #graph {
-      height: 250px;
+      height: 200px;
       border-radius: 10px;
       display: flex;
       flex-direction: column;
@@ -105,7 +105,7 @@
       display:flex;
       flex-wrap:nowrap;
       justify-content: space-around;
-      margin: 25px 0 0 0;
+      margin: 25px 0 5px 0;
       align-items: flex-end;
 
     }
@@ -125,14 +125,50 @@
       display: flex;
       flex-direction: row;
       justify-content: space-around;
-      border-bottom: 1px solid var(--mdBrown);
+      border-bottom: 1px solid var(--paleOrange);
+      font-size:.8em;
     }
 
     #labels > div {
       width: 4em;
       text-align: center;
-      padding: 5px 0 5px 0;
+      padding: 5px 0 25px 0;
     }
+
+    #totals {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 25px;
+    }
+
+    #thisMonth {
+      width: 50%;
+    }
+
+    #thisMonth h2 {
+      color: var(--mdBrown);
+    }
+
+    #thisMonth h1 {
+      font-size: 2.5em;
+    }
+
+    #lastMonth {
+      width: 50%;
+      text-align:right;
+    }
+
+    #lastMonth h2 {
+      font-size: .9em;
+      color: var(--mdBrown);
+    }
+
+    #lastMonth h1 {
+      font-size: 1.4em;
+    }
+
   </style>
 
 <!--font links-->
@@ -145,7 +181,7 @@
 
   <header>
     <h2>My balance</h2>
-    <h1 id="balance">$921.48</h1>
+    <h1 id="balance">$921.45</h1>
   </header>
 
   <section id="spending">
@@ -161,31 +197,28 @@
         <div id="sun" class = "reg"></div>
       </div>
       <div id="labels">
-        <div id="mon">Mon</div>
-        <div id="tue">Tue</div>
-        <div id="wed">Wed</div>
-        <div id="thu">Thu</div>
-        <div id="fri">Fri</div>
-        <div id="sat">Sat</div>
-        <div id="sun">Sun</div>
+        <div id="mon">mon</div>
+        <div id="tue">tue</div>
+        <div id="wed">wed</div>
+        <div id="thu">thu</div>
+        <div id="fri">fri</div>
+        <div id="sat">sat</div>
+        <div id="sun">sun</div>
       </div>
 
     </div>
+
+    <div id="totals">
+      <div id="thisMonth">
+        <h2>Total this month</h2>
+        <h1>$478.33</h1>
+      </div>
+      <div id="lastMonth">
+        <h1>+2.4%</h1>
+        <h2>from last month</h2>
+      </div>
+    </div>
   </section>
-
-  mon
-  tue
-  wed
-  thu
-  fri
-  sat
-  sun
-
-  Total this month
-  $478.33
-
-  +2.4%
-  from last month
   
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
@@ -221,6 +254,7 @@
         }
     };
 
+
     //FUNCTION to assign FINANCEDATA to BAR GRAPHS
     const assignData = () => {
         findMax(financeData);
@@ -246,6 +280,7 @@
         // findMax();
         assignData();
       }
+
 
 
       loadData();
