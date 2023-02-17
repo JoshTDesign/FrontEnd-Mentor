@@ -107,11 +107,11 @@
       display:flex;
       flex-wrap:nowrap;
       justify-content: space-around;
-      margin: 25px 0 5px 0;
+      margin: 40px 0 5px 0;
       align-items: flex-end;
     }
 
-    #barGraph > div {
+    .bar {
       background: var(--softRed);
       content: " ";
       flex-direction: row;
@@ -120,10 +120,24 @@
       height: 5%;
       transition: height 1s;
       transition: opacity 200ms;
+      position:relative;
     }
 
-    #barGraph > div:hover {
-      opacity: 50%;
+    .bar:hover {
+      opacity: 70%;
+    }
+
+    .tooltip {
+      position: absolute;
+      display: none;
+      background-color: var(--dkBrown);
+      width: 60px;
+      height: 30px;
+      border-radius: 5px;
+      content: "hello";
+      top:-40px;
+      left:-10px;
+      opacity: 100%;
     }
 
     #labels {
@@ -177,6 +191,25 @@
       font-size: 1.4em;
     }
 
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+
+    body {
+      padding: 20px 10px 20px 10px;
+    }
+
+    header {
+      width: calc(100% - 20%);
+    }
+
+    #spending {
+      width: calc(100% - 20%);
+
+    }
+
+  }
+
+
   </style>
 
 <!--font links-->
@@ -196,13 +229,13 @@
     <h1>Spending - Last 7 days</h1>
     <div id="graph">
       <div id="barGraph">
-        <div id="mon" class = "reg"></div>
-        <div id="tue" class = "reg"></div>
-        <div id="wed" class = "reg"></div>
-        <div id="thu" class = "reg"></div>
-        <div id="fri" class = "reg"></div>
-        <div id="sat" class = "reg"></div>
-        <div id="sun" class = "reg"></div>
+        <div id="mon" class="bar"><span class="tooltip" data-text="placeholder"></span></div>
+        <div id="tue" class="bar"><span class="tooltip" data-text="placeholder"></span></div>
+        <div id="wed" class="bar"><span class="tooltip" data-text="placeholder"></span></div>
+        <div id="thu" class="bar"><span class="tooltip" data-text="placeholder"></span></div>
+        <div id="fri" class="bar"><span class="tooltip" data-text="placeholder"></span></div>
+        <div id="sat" class="bar"><span class="tooltip" data-text="placeholder"></span></div>
+        <div id="sun" class="bar"><span class="tooltip" data-text="placeholder"></span></div>
       </div>
       <div id="labels">
         <div id="mon">mon</div>
@@ -254,6 +287,13 @@
         return Math.max.apply(null, dailyTotalArray);
         // maxNum = Math.max.apply(null, dailyTotalArray);
       }
+    
+    //HANDLES HOVER EVENT TO REVEAL TOOLTIP
+    barGraphElement.addEventListener("mouseover", function (event) {
+      // e.child[0].style('display', 'block');
+      // console.log(event);
+      console.log('mouseover');
+    })
 
     //FUNCTION to assign FINANCEDATA to BAR GRAPHS
     const assignData = () => {
